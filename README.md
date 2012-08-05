@@ -7,7 +7,7 @@ Coldfire hat sich im Moment die Seiten der [w3school](http://www.w3schools.com/d
 Mein Vorschlag wäre es wenn Du (Coldfire) einen Github Account eröffnest (nicht den skg-Account benutzen) und dieses Projekt [forkst](http://de.wikipedia.org/wiki/Abspaltung_(Softwareentwicklung)).
 
 
-Wir sollten weiterhin neben unseren [setup.md](setup.md)
+Wir sollten weiterhin neben unseren [setup.md](https://github.com/picpromusic/learning-enviro-for-coldfire/edit/master/setup.md)
 
-einen virtual host für [**lernen**](http://www.lernen.loc) in unseren Apache-Konfigurationen [einfügen](setupLernen.md)
+einen virtual host für [**lernen**](http://www.lernen.loc) in unseren Apache-Konfigurationen [einfügen](https://github.com/picpromusic/learning-enviro-for-coldfire/edit/master/setupLernen.md)
 
