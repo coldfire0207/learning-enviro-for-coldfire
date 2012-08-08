@@ -117,7 +117,9 @@ Zu git://github.com/picpromusic/learning-enviro-for-coldfire kannst du so oder s
 sebastian@sebastian-skg:~/learning-enviro-for-coldfire$ git remote set-url --push gh-picpromusic no_push
 sebastian@sebastian-skg:~/learning-enviro-for-coldfire$ git remote -v
 gh-coldfire	http://github.com/coldfire0207/learning-enviro-for-coldfire.git (fetch)
-gh-coldfire	http://github.com/coldfire0207/learning-enviro-for-coldfire.git (push)
+gh-coldfire	http://github.com/coldfire0207
+
+/learning-enviro-for-coldfire.git (push)
 gh-picpromusic	git://github.com/picpromusic/learning-enviro-for-coldfire (fetch)
 gh-picpromusic	no_push (push)
 </pre>
@@ -127,5 +129,88 @@ Nun holen wir uns mal alles was ich so gemacht habe.<br/>
 
 <pre>
 sebastian@sebastian-skg:~/learning-enviro-for-coldfire$ git fetch gh-picpromusic
+remote: Counting objects: 5, done.
+remote: Compressing objects: 100% (4/4), done.
+remote: Total 4 (delta 0), reused 4 (delta 0)
+Unpacking objects: 100% (4/4), done.
+From git://github.com/picpromusic/learning-enviro-for-coldfire
+ * [new branch]      master     -> gh-picpromusic/master
+</pre>
 
+Das kann natürlich auch ein wenig abweichen. Du siehst hier aber das er einen neuen Branch erkannt hat und zwar den Masterbranch im gh-picpromusic remote.
+
+Die Änderungen (Die ich gemacht habe) sind jetzt zwar schon bei Dir und du könntest sie dir auch schon ansehen, aber in deinen eigenen branch sind sie noch nicht drin. Lass uns mal gucken was ich so an Änderunge gemacht habe.
+
+<pre>
+sebastian@sebastian-skg:~/learning-enviro-for-coldfire$ git diff --shortstat master gh-picpromusic/master 
+ 2 files changed, 139 deletions(+)
+sebastian@sebastian-skg:~/learning-enviro-for-coldfire$ git diff --numstat master gh-picpromusic/master 
+0       131     git-tutorial-learning-enviro.html
+0       8       index.html
+sebastian@sebastian-skg:~/learning-enviro-for-coldfire$ git diff --stat master gh-picpromusic/master 
+ git-tutorial-learning-enviro.html |  131 +++++++++++++++++++++++++++++++++++++
+ index.html                        |    8 +++
+ 2 files changed, 139 insertions(+)
+</pre>
+
+Das sind drei Möglichkeiten einen schnellen überblick zubekommen was ein anderer so geändert hat.
+Es gibt 139(+ => Hinzu, - => Löschungen) Änderungen in 2 Dateien. 
+131 davon in git-tutorial-learning-enviro.html und 8 in index.html
+
+Du kannst aber für Details auch 
+<pre>
+sebastian@sebastian-skg:~/learning-enviro-for-coldfire$ git diff gh-picpromusic/master 
+diff --git a/git-tutorial-learning-enviro.html b/git-tutorial-learning-enviro.html
+new file mode 100644
+index 0000000..d60d7e0
+--- /dev/null
++++ b/git-tutorial-learning-enviro.html
+@@ -0,0 +1,131 @@
++<h1></h1>
++Öffne eine Console (klicke dazu oben links die dash-startseite an und suche nach terminal, ich empfehle das gn
++Dann wechsel in das Verzeichnis learning-enviro-for-coldfire in deinen home-verzeichnis.
++Du kannst prüfen wo du bist in dem du den Befehl pwd (print-working-directory (drucke-arbeits-verzeichnis)) ve
++Mit dem Befehl ls (list (liste)) kannst du dir den Verzeichnisinhalt ansehen. Hilfreich ist auch ls -lha
++welches eine "Menschenlesbare Liste mit allen Einträgen zeit" ((l)ist, (h)uman-readable, (a)ll files)<br/>
++Du kannst natürlich auch ls -lh verwenden (dann sieht man den Wald vor lauter Bäumen auch wieder). Hier ein Be
+....
+....
+</pre>
+
+Mit einen Tastendruck auf die Taste q kommst du wieder aus dem modus raus. Mit den Pfeiltasten kannst du hoch und runter scrollen.
+
+Nun nachdem du dir meine Änderungen angesehen hast wird es zeit meine Änderungen zu übernehmen.
+
+<pre>
+sebastian@sebastian-skg:~/learning-enviro-for-coldfire$ git merge --ff-only gh-picpromusic/master 
+Updating e09df4f..65e93a0
+Fast-forward
+ git-tutorial-learning-enviro.html |  131 +++++++++++++++++++++++++++++++++++++
+ index.html                        |    8 +++
+ 2 files changed, 139 insertions(+)
+ create mode 100644 git-tutorial-learning-enviro.html
+ create mode 100644 index.html
+</pre>
+
+--ff-only ist immer am sichersten. Für andere Merges werde ich noch ein eigenen Tutorial schreiben.
+wenn du nun in dein Verzeichnis guckst wirst du die Dateien finden die neu sind.
+
+<pre>
+sebastian@sebastian-skg:~/learning-enviro-for-coldfire$  ls -lh
+insgesamt 16K
+-rw-rw-r-- 1 sebastian sebastian 6,6K Aug  8 14:43 git-tutorial-learning-enviro.html
+-rw-rw-r-- 1 sebastian sebastian  570 Aug  8 14:43 index.html
+-rw-rw-r-- 1 sebastian sebastian  756 Aug  8 14:16 README.md
+sebastian@sebastian-skg:~/learning-enviro-for-coldfire$ git branch -av
+* master                        65e93a0 [ahead 1] einige Ergänzungen
+  remotes/gh-coldfire/HEAD      -> gh-coldfire/master
+  remotes/gh-coldfire/master    e09df4f Update README.md
+  remotes/gh-picpromusic/master 65e93a0 einige Ergänzungen
+</pre>
+
+Du bist mit deinen master einen commit weiter (ahead) als dein github/master.
+Das wollen wir nun ändern.
+
+<pre>
+sebastian@sebastian-skg:~/learning-enviro-for-coldfire$ git push gh-coldfire
 </pre>
