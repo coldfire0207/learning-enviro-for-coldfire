@@ -1,0 +1,131 @@
+<h1></h1>
+Öffne eine Console (klicke dazu oben links die dash-startseite an und suche nach terminal, ich empfehle das gnome-terminal(das ist die Anwendung die einfach nur terminal heißt)).<br/>
+Dann wechsel in das Verzeichnis learning-enviro-for-coldfire in deinen home-verzeichnis.
+Du kannst prüfen wo du bist in dem du den Befehl pwd (print-working-directory (drucke-arbeits-verzeichnis)) verwendest.<br/>
+Mit dem Befehl ls (list (liste)) kannst du dir den Verzeichnisinhalt ansehen. Hilfreich ist auch ls -lha
+welches eine "Menschenlesbare Liste mit allen Einträgen zeit" ((l)ist, (h)uman-readable, (a)ll files)<br/>
+Du kannst natürlich auch ls -lh verwenden (dann sieht man den Wald vor lauter Bäumen auch wieder). Hier ein Beispiel. <br/>
+<pre>
+sebastian@sebastian-skg:~$ ls -lh
+drwxr-xr-x 2 sebastian sebastian 4,0K Aug  1 18:55 Arbeitsfläche
+drwxr-xr-x 2 sebastian sebastian 4,0K Aug  1 18:55 Bilder
+drwxr-xr-x 2 sebastian sebastian 4,0K Aug  1 18:55 Dokumente
+drwxr-xr-x 2 sebastian sebastian 4,0K Aug  1 18:55 Downloads
+-rw-r--r-- 1 sebastian sebastian 8,3K Aug  1 18:05 examples.desktop
+drwxr-xr-x 3 sebastian sebastian 4,0K Aug  8 05:15 learning-enviro-for-coldfire
+drwxr-xr-x 2 sebastian sebastian 4,0K Aug  1 18:55 Musik
+drwxr-xr-x 2 sebastian sebastian 4,0K Aug  1 18:55 Öffentlich
+drwxrwxr-x 7 sebastian sebastian 4,0K Aug  2 05:00 skg
+drwxr-xr-x 2 sebastian sebastian 4,0K Aug  1 18:55 Videos
+drwxr-xr-x 2 sebastian sebastian 4,0K Aug  1 18:55 Vorlagen
+| |  |  |  |     |         |      |       |          > Name der Datei / der Verzeichnisses / des Links
+| |  |  |  |     |         |      |       > Änderungsdatum und Zeit
+| |  |  |  |     |         |      >  Platzverbrauch auf Datenträger (für Verzeichnisse ist das nicht rekursiv gemeint)
+| |  |  |  |     |         >  Besitzende Gruppe
+| |  |  |  |     > Besitzer
+| |  |  |  > ???
+| |  |  >  Rechte für für die welt (alle User) r => read (lesen) w => write (schreiben) x => execute (ausführen)
+| |  > Rechte für die Gruppe
+| > Rechte für den Besitzer
+> Typ. d => directory (Verzeichnis)  l => link ("Verknüpfung" ist was anderes als windows-verknüpfung) - => Datei
+</pre>
+Noch ein Beispiel<br/>
+<pre>
+sebastian@sebastian-skg:~$ ls -lh /etc/apache2/sites-enabled/
+insgesamt 8,0K
+lrwxrwxrwx 1 root root  26 Aug  1 19:06 000-default -> ../sites-available/default
+lrwxrwxrwx 1 root root  22 Aug  1 19:41 002-skg -> ../sites-available/skg
+lrwxrwxrwx 1 root root  25 Aug  5 22:03 003-lernen -> ../sites-available/lernen
+                                                       |
+                                                       > Ziel der Verknüpfung
+</pre>
+
+Mit dem Befehl cd (change directory ( wechsel Verzeichnis ) ) kann du in ein anderes Verzeichnis wechsel.<br/>
+<br/>
+Was sehe ich eigentlich in meinen Eingabeprompt?<br/>
+
+<pre>
+sebastian@sebastian-skg:~$ 
+   |          |         |
+   |          |         > Verzeichnis in dem du dich befindest (~ ist dein home-verzeichnis)
+   |          > Rechner auf dem Du Dich befindest         
+   > Dein aktueller Username
+
+sebastian@sebastian-skg:~$ cd \
+>
+|
+> Fortsetzungszeichen. Da ich hier einen Backslash (\) benutz habe, habe ich gesagt ich möchte in der nächsten Zeile weiterschreiben.
+<pre>
+Beispiel:<br/>
+<pre>
+sebastian@sebastian-skg:~$ cd \
+> learning-enviro-for-coldfire
+sebastian@sebastian-skg:~/learning-enviro-for-coldfire$
+</pre>
+
+
+Da wir uns nun im tutorial-Verzeichnis befinden. Könne wir uns ein wenig um git kümmer<br/>
+Erstmal gucken wir uns an in welchen Branch (Entwicklungszweig) wir uns befinden und welches es alle gibt.
+
+<pre>
+sebastian@sebastian-skg:~/learning-enviro-for-coldfire$ git branch -av
+* master                e09df4f Update README.md
+  remotes/origin/HEAD   -> origin/master
+  remotes/origin/master e09df4f Update README.md
+</pre>
+Wir sehen das wir im Branch master sind (wegen des *) und das es vom Remote origin (in diesen Fall ist das dein git-hub-account auch einen Branch master gibt. Das HEAD können wir erstmal vernachlässigen.)<br/>
+Wir sehen auch das dein master und das remotes/origin/master auf die gleiche Version zeigen (hier e09df4f). Das heißt du du deine lokale Entwicklung im moment auf der gleichen Version stattfindet wir die die im Moment in github aktuell ist.<br>
+Ich möchte gerne das remote origin mit dir in ein remote gh-coldfire umbennen.<br>
+
+<pre>
+sebastian@sebastian-skg:~/learning-enviro-for-coldfire$ git remote
+origin
+sebastian@sebastian-skg:~/learning-enviro-for-coldfire$ git remote rename origin gh-coldfire
+sebastian@sebastian-skg:~/learning-enviro-for-coldfire$ git remote
+gh-coldfire
+sebastian@sebastian-skg:~/learning-enviro-for-coldfire$ git branch -av
+* master                        e09df4f Update README.md
+  remotes/gh-coldfire/HEAD   -> gh-picpromusic/master
+  remotes/gh-coldfire/master e09df4f Update README.md
+</pre>
+Es hat wohl geklappt, was? <br/>
+<br/>
+Nun würde ich gerne auch meinen Github-Account hinzufügen. Du kannst von da nur lesen, nicht schreiben, aber das macht ja nix.<br/>
+
+<pre>
+sebastian@sebastian-skg:~/learning-enviro-for-coldfire$ git remote add gh-picpromusic \
+> git://github.com/picpromusic/learning-enviro-for-coldfire
+sebastian@sebastian-skg:~/learning-enviro-for-coldfire$ git remote
+gh-coldfire
+gh-picpromusic
+</pre>
+
+So nun haben wir 2 remotes. Aber was steckt hinter den remotes?
+
+<pre>
+sebastian@sebastian-skg:~/learning-enviro-for-coldfire$ git remote -v
+gh-coldfire	http://github.com/coldfire0207/learning-enviro-for-coldfire.git (fetch)
+gh-coldfire	http://github.com/coldfire0207/learning-enviro-for-coldfire.git (push)
+gh-picpromusic	git://github.com/picpromusic/learning-enviro-for-coldfire (fetch)
+gh-picpromusic	git://github.com/picpromusic/learning-enviro-for-coldfire (push)
+</pre>
+
+Pro Remote haben wir 2 urls (eine für fetch (holen/lesen) und eine für push (schieben/schreiben))<br/>
+Zu git://github.com/picpromusic/learning-enviro-for-coldfire kannst du so oder so nicht pushen. Daher entfernen wir jetzt diese url.
+
+<pre>
+sebastian@sebastian-skg:~/learning-enviro-for-coldfire$ git remote set-url --push gh-picpromusic no_push
+sebastian@sebastian-skg:~/learning-enviro-for-coldfire$ git remote -v
+gh-coldfire	http://github.com/coldfire0207/learning-enviro-for-coldfire.git (fetch)
+gh-coldfire	http://github.com/coldfire0207/learning-enviro-for-coldfire.git (push)
+gh-picpromusic	git://github.com/picpromusic/learning-enviro-for-coldfire (fetch)
+gh-picpromusic	no_push (push)
+</pre>
+No_push gibt es nicht als url und damit funktioniert der push nun auch wirklich gar nicht mehr. <br/>
+<br/>
+Nun holen wir uns mal alles was ich so gemacht habe.<br/>
+
+<pre>
+sebastian@sebastian-skg:~/learning-enviro-for-coldfire$ git fetch gh-picpromusic
+
+</pre>
