@@ -213,4 +213,92 @@ Das wollen wir nun ändern.
 
 <pre>
 sebastian@sebastian-skg:~/learning-enviro-for-coldfire$ git push gh-coldfire
+Username for 'http://github.com': coldfire0207
+Password for 'http://coldfire0207@github.com': Dein Github-Password
+To http://github.com/coldfire0207/learning-enviro-for-coldfire.git
+   65e93a0..0f02b44  master -> master
+sebastian@sebastian-skg:~/learning-enviro-for-coldfire$ git branch -av
+* master                        65e93a0 einige Ergänzungen
+  remotes/gh-coldfire/HEAD      -> gh-coldfire/master
+  remotes/gh-coldfire/master    65e93a0 einige Ergänzungen
+  remotes/gh-picpromusic/master 65e93a0 einige Ergänzungen
 </pre>
+
+Nun kannst Du auch auf der deiner github seite sehen das die Änderungen übernommen hast.<br/>
+<br/>
+Auf der Seite<br/>
+http://www.lernen.loc<br/>
+kannst du die index.html einsehen.<br/>
+<br/>
+Vielleicht wäre es eine gute Idee da mal eine echte HTML-Seite draus zumachen?<br/>
+<br/>
+Änder die Seite ab bis sie im Browser gut aussieht.<br/>
+Du solltest auch den Link aufs Tutorial in www.lernen.loc/git-tutorial-learning-enviro.html abändern.<br/>
+<br/>
+Danach machen wir uns dann an das einchecken.<br/>
+
+<pre>
+sebastian@sebastian-skg:~/learning-enviro-for-coldfire$ git commit
+# On branch master
+# Changes not staged for commit:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#	modified:   git-tutorial-learning-enviro.html
+#
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#	git-tutorial-learning-enviro.html~
+no changes added to commit (use "git add" and/or "git commit -a")
+</pre>
+
+Aha. Git hat zwar Änderungen festgestelle, hier an git-tutorial-learning-enviro.html und git-tutorial-learning-enviro.html~ aber
+diese Änderungen wurden noch nicht für einen commit vorgemerkt. die ~-Datei  ist nur eine Backup-Datei von gedit und soll auch nicht eingecheckt werden.
+
+<pre>
+sebastian@sebastian-skg:~/learning-enviro-for-coldfire$ git add git-tutorial-learning-enviro.html
+sebastian@sebastian-skg:~/learning-enviro-for-coldfire$ git commit
+</pre>
+
+Danach öffnet sich folgende Seite:
+<pre>
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# Committer: Sebastian <sebastian@sebastian-skg.(none)>
+#
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#       modified:   git-tutorial-learning-enviro.html
+#
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#       git-tutorial-learning-enviro.html~
+
+
+                                             [ 16 Zeilen gelesen ]
+^G Hilfe          ^O Speichern      ^R Datei öffnen   ^Y Seite zurück   ^K Ausschneiden   ^C Cursor
+^X Beenden        ^J Ausrichten     ^W Wo ist         ^V Seite vor      ^U Ausschn. rückgä^T Rechtschr.
+</pre>
+ 
+Hier kannst Du einen Kommentar zu deinen Änderungen erfassen. und Dann mit STRG+X J Enter den Editor verlassen und den Commit durchführen.
+
+Nun kannst Du wieder nach github hochladen und ich kann es mir dann holen.
+<pre>
+sebastian@sebastian-skg:~/learning-enviro-for-coldfire$ git push gh-coldfire
+Username for 'http://github.com': coldfire0207
+Password for 'http://coldfire0207@github.com': Dein Github-Password
+To http://github.com/coldfire0207/learning-enviro-for-coldfire.git
+   65e93a0..4837483  master -> master
+</pre>
+<br/>
+Du kannst mich einfach anrufen oder auf der github-Seite einen pull-request zu mir senden.<br/>
+<br/>
+https://github.com/picpromusic/learning-enviro-for-coldfire<br/>
+<br/>
+Dort gibt es den Knopf Pull Request.<br/>
+So das soll erstmal reichen. Bei Fragen bitte melden.<br/>
